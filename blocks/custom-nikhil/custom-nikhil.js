@@ -6,27 +6,23 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const cols = [...row.children];
-
     if (cols.length < 3) return;
 
     const [image, title, desc] = cols;
-
     const titleText = title.textContent.trim();
 
-    // 🔥 CALL SERVLET USING DYNAMIC VALUE
-   fetch('http://localhost:4502/bin/myservlet?title=Nikhil')
-  .then(res => res.text())
-  .then(text => {
-    try {
-      const data = JSON.parse(text);
-      console.log(data);
-    } catch {
-      console.error("Not JSON:", text);
-    }
-  });
+    fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+      .then(res => res.text())
+      .then(text => {
+        try {
+          const data = JSON.parse(text);
+          console.log('Servlet:', data);
+        } catch {
+          console.error("Not JSON:", text);
+        }
+      });
 
     const card = document.createElement('div');
-
     card.innerHTML = `
       <div>${image.innerHTML}</div>
       <h3>${titleText}</h3>
