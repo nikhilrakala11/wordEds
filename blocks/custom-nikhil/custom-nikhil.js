@@ -11,16 +11,12 @@ export default function decorate(block) {
     const [image, title, desc] = cols;
     const titleText = title.textContent.trim();
 
-    fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
-      .then(res => res.text())
-      .then(text => {
-        try {
-          const data = JSON.parse(text);
-          console.log('Servlet:', data);
-        } catch {
-          console.error("Not JSON:", text);
-        }
-      });
+   fetch(`https://abc123.ngrok-free.app/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+  .then(res => res.json())
+  .then(data => {
+    console.log("Servlet:", data);
+  })
+  .catch(err => console.error(err));
 
     const card = document.createElement('div');
     card.innerHTML = `
