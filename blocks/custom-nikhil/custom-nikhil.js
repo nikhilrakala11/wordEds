@@ -14,14 +14,16 @@ export default function decorate(block) {
     const titleText = title.textContent.trim();
 
     // 🔥 CALL SERVLET USING DYNAMIC VALUE
-    fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Servlet Response:', data);
-      })
-      .catch((err) => {
-        console.error('Error:', err);
-      });
+   fetch('http://localhost:4502/bin/myservlet?title=Nikhil')
+  .then(res => res.text())
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      console.log(data);
+    } catch {
+      console.error("Not JSON:", text);
+    }
+  });
 
     const card = document.createElement('div');
 
