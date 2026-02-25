@@ -8,16 +8,18 @@ export default function decorate(block) {
 
     const titleText = cols[1].textContent.trim();
 
-  fetch(`https://strobilaceous-wanier-omer.ngrok-free.dev/bin/myservlet?title=${encodeURIComponent(titleText)}`, {
-  headers: {
-    'ngrok-skip-browser-warning': 'true'
-  }
-})
-.then(res => res.json())
-.then(data => {
-  console.log("SUCCESS:", data);
-})
-.catch(err => {
-  console.error("ERROR:", err);
-});
-  });}
+    fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("SUCCESS:", data);
+      })
+      .catch(error => {
+        console.error("ERROR:", error);
+      });
+  });
+}
