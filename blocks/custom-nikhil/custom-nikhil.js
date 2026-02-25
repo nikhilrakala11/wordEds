@@ -8,7 +8,7 @@ export default function decorate(block) {
 
     const titleText = cols[1].textContent.trim();
 
-    fetch(`https://abc123.ngrok-free.app/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+    fetch(`https://strobilaceous-wanier-omer.ngrok-free.dev/bin/myservlet?title=${encodeURIComponent(titleText)}`)
       .then(() => {
         // eslint-disable-next-line no-console
         console.log('Servlet called for:', titleText);
