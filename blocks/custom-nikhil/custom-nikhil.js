@@ -8,8 +8,7 @@ export default function decorate(block) {
 
     const titleText = cols[1].textContent.trim();
 
-    // 🔥 SIMPLE GET CALL
-    fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+    fetch(`https://abc123.ngrok-free.app/bin/myservlet?title=${encodeURIComponent(titleText)}`)
       .then(() => {
         console.log("Servlet called for:", titleText);
       })
