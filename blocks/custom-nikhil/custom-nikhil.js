@@ -10,10 +10,12 @@ export default function decorate(block) {
 
     fetch(`https://abc123.ngrok-free.app/bin/myservlet?title=${encodeURIComponent(titleText)}`)
       .then(() => {
-        console.log("Servlet called for:", titleText);
+        // eslint-disable-next-line no-console
+        console.log('Servlet called for:', titleText);
       })
       .catch((err) => {
-        console.error("Error calling servlet:", err);
+        // eslint-disable-next-line no-console
+        console.error('Error calling servlet:', err);
       });
   });
 }
