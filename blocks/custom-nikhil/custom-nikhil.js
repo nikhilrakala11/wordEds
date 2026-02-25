@@ -9,13 +9,12 @@ export default function decorate(block) {
     const titleText = cols[1].textContent.trim();
 
     fetch(`https://strobilaceous-wanier-omer.ngrok-free.dev/bin/myservlet?title=${encodeURIComponent(titleText)}`)
-      .then(() => {
-        // eslint-disable-next-line no-console
-        console.log('Servlet called for:', titleText);
-      })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.error('Error calling servlet:', err);
-      });
+  .then(res => res.json())
+  .then(data => {
+    console.log("SUCCESS:", data);
+  })
+  .catch(err => {
+    console.error("ERROR:", err);
+  });
   });
 }
