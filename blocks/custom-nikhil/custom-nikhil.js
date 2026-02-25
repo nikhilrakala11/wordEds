@@ -8,15 +8,11 @@ export default function decorate(block) {
 
     const titleText = cols[1].textContent.trim();
 
-  fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
-  .then(response => {
-    console.log("STATUS:", response.status);
-    return response.text();   // temporarily use text
+ fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+  .then(res => {
+    if (!res.ok) throw new Error(res.status);
+    return res.json();
   })
-  .then(text => {
-    console.log("RAW RESPONSE:", text);
-  })
-  .catch(error => {
-    console.error("ERROR:", error);
-  });
+  .then(data => console.log("SUCCESS:", data))
+  .catch(err => console.error("ERROR:", err));
   })};
