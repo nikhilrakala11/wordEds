@@ -8,7 +8,7 @@ export default function decorate(block) {
 
     const titleText = cols[1].textContent.trim();
 
- fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+ fetch(`/bin/myservlet?title=${encodeURIComponent(titleText)}`)
   .then(res => {
     if (!res.ok) throw new Error(res.status);
     return res.json();
