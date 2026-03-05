@@ -5,10 +5,10 @@ export default function decorate(block) {
   rows.forEach((row) => {
     const cols = [...row.children];
     if (cols.length < 3) return;
-
+debugger;
     const titleText = cols[1].textContent.trim();
 
- fetch(`/bin/myservlet?title=${encodeURIComponent(titleText)}`)
+ fetch(`http://localhost:4502/bin/myservlet?title=${encodeURIComponent(titleText)}`)
   .then(res => {
     if (!res.ok) throw new Error(res.status);
     return res.json();
