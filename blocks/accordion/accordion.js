@@ -1,6 +1,8 @@
 export default function decorate(block) {
   const rows = [...block.children];
-  rows.shift(); // remove header row
+  rows.shift(); // remove header
+
+  const accordion = document.createElement('div');
 
   rows.forEach((row) => {
     const question = row.children[0].textContent;
@@ -10,14 +12,16 @@ export default function decorate(block) {
     const summary = document.createElement('summary');
 
     summary.textContent = question;
-    details.append(summary);
 
     const p = document.createElement('p');
     p.textContent = answer;
+
+    details.append(summary);
     details.append(p);
 
-    block.append(details);
+    accordion.append(details);
   });
 
-  block.innerHTML = '';
+  block.textContent = '';
+  block.append(accordion);
 }
